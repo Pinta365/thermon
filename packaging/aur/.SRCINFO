@@ -21,6 +21,6 @@ pkgbase = thermon
 	optdepends = libxrandr: thermon-gui on X11
 	optdepends = libxkbcommon-x11: thermon-gui on X11
 	source = thermon-0.1.0.tar.gz::https://github.com/Pinta365/thermon/archive/refs/tags/v0.1.0.tar.gz
-	sha256sums = 602198acb64fa33c3ea3f09b81c8ed8e7e8fdecc59ba8bf9db993ba2006ec994
+	sha256sums = 86993f94132914ac35060a6c3ec0e33cb22bea04a8086e6f959a5ca6d4bd2e1e
 
 pkgname = thermon
