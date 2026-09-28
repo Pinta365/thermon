@@ -1,0 +1,26 @@
+pkgbase = thermon
+	pkgdesc = Low-overhead hardware and system monitor: daemon, CLI and desktop window
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/Pinta365/thermon
+	install = thermon.install
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	checkdepends = python
+	makedepends = cargo
+	depends = gcc-libs
+	depends = glibc
+	depends = libglvnd
+	depends = libxkbcommon
+	depends = wayland
+	optdepends = libnotify: desktop notifications for alerts
+	optdepends = libx11: thermon-gui on X11
+	optdepends = libxcursor: thermon-gui on X11
+	optdepends = libxi: thermon-gui on X11
+	optdepends = libxrandr: thermon-gui on X11
+	optdepends = libxkbcommon-x11: thermon-gui on X11
+	source = thermon-0.1.0.tar.gz::https://github.com/Pinta365/thermon/archive/refs/tags/v0.1.0.tar.gz
+	sha256sums = 602198acb64fa33c3ea3f09b81c8ed8e7e8fdecc59ba8bf9db993ba2006ec994
+
+pkgname = thermon
