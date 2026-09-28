@@ -201,12 +201,16 @@ mod tests {
     use super::*;
     use thermon_core::sampler::Sampler;
 
+    /// `<tmp>/thermon-edit-test-<pid>-<n>/<name>`: every test gets its own
+    /// directory, which `cleanup` removes.
     fn temp_path(name: &str) -> PathBuf {
-        std::env::temp_dir().join(format!(
-            "thermon-edit-test-{}-{}-{name}",
-            std::process::id(),
-            TEMP_FILE_SEQUENCE.fetch_add(1, Ordering::Relaxed)
-        ))
+        std::env::temp_dir()
+            .join(format!(
+                "thermon-edit-test-{}-{}",
+                std::process::id(),
+                TEMP_FILE_SEQUENCE.fetch_add(1, Ordering::Relaxed)
+            ))
+            .join(name)
     }
 
     fn fixture(name: &str) -> PathBuf {
@@ -216,7 +220,15 @@ mod tests {
     }
 
     fn cleanup(path: &Path) {
-        let _ = fs::remove_dir_all(path.parent().unwrap());
+        let dir = path
+            .ancestors()
+            .find(|p| {
+                p.file_name()
+                    .and_then(|n| n.to_str())
+                    .is_some_and(|n| n.starts_with("thermon-edit-test-"))
+            })
+            .expect("test path outside its own directory");
+        let _ = fs::remove_dir_all(dir);
     }
 
     #[test]
@@ -248,7 +260,7 @@ mod tests {
         assert!(hide(&path, "acpitz/temp1").unwrap().changed);
         assert!(unhide(&path, "acpitz/temp1").unwrap().changed);
         assert_eq!(fs::read_to_string(&path).unwrap(), original);
-        let _ = fs::remove_file(&path);
+        cleanup(&path);
     }
 
     #[test]
