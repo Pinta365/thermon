@@ -1,0 +1,20 @@
+[Unit]
+Description=Thermon hardware monitor daemon
+
+[Service]
+ExecStart=/usr/bin/thermond
+Restart=on-failure
+RestartSec=2
+Nice=5
+Slice=background.slice
+MemoryMax=64M
+CPUQuota=10%
+NoNewPrivileges=yes
+LockPersonality=yes
+RestrictRealtime=yes
+SystemCallArchitectures=native
+# ProtectSystem/ProtectHome are left out: user services can only use them
+# with user namespaces.
+
+[Install]
+WantedBy=default.target

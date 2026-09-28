@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Thermon
+GenericName=Hardware monitor
+Comment=Temperatures, load and processes
+Exec=thermon-gui
+Icon=utilities-system-monitor
+Terminal=false
+Type=Application
+Categories=System;Monitor;
+StartupWMClass=thermon
+Keywords=temperature;sensors;cpu;gpu;processes;monitor;
+Actions=processes;
+
+[Desktop Action processes]
+Name=Processes
+Exec=thermon-gui --tab processes

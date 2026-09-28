@@ -1,0 +1,24 @@
+[workspace]
+resolver = "3"
+members = ["crates/thermon-core", "crates/thermon", "crates/thermond", "crates/thermon-gui"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Pinta365"]
+repository = "https://github.com/Pinta365/thermon"
+publish = false
+rust-version = "1.89"
+
+[workspace.dependencies]
+thermon-core = { path = "crates/thermon-core" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = { version = "1", default-features = false, features = ["parse", "serde"] }
+toml_edit = "0.25.15"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

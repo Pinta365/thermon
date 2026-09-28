@@ -1,0 +1,17 @@
+[package]
+name = "thermon-gui"
+description = "Desktop window for the thermon hardware monitor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+publish.workspace = true
+rust-version = "1.95"
+
+[dependencies]
+thermon-core.workspace = true
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui_plot = "0.37"
+egui_extras = { version = "0.36", default-features = false }
+serde_json.workspace = true
